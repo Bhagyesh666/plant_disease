@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "341551565715",
+    "project_id": "plant-disease-25796",
+    "storage_bucket": "plant-disease-25796.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:341551565715:android:600b32e8e2e380a7613666",
+        "android_client_info": {
+          "package_name": "com.example.modernlogintute"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "341551565715-473cglhgg67doleadu51amgr0228co86.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI0SgSn8uIrPCYdvyHTEUAgZp3QR4-e7A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "341551565715-473cglhgg67doleadu51amgr0228co86.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
