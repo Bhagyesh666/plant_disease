@@ -1,10 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/components/my_button.dart';
 import 'package:modernlogintute/components/my_textfield.dart';
 import 'package:modernlogintute/components/square_tile.dart';
 import 'package:modernlogintute/services/auth_service.dart';
+// ignore: unused_import
 import 'package:google_sign_in/google_sign_in.dart';
+// ignore: unused_import
 import 'auth_page.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -32,13 +36,12 @@ class _RegisterPageState extends State<RegisterPage> {
       },
     );
     try {
-      if(passwordController.text == confirmPasswordController.text){
+      if (passwordController.text == confirmPasswordController.text) {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text,
           password: passwordController.text,
         );
-
-      }else{
+      } else {
         showErrorMessage("Passwords doesn't matches!");
       }
       Navigator.pop(context);
@@ -47,7 +50,6 @@ class _RegisterPageState extends State<RegisterPage> {
       showErrorMessage(e.code);
     }
   }
-
 
   void showErrorMessage(String message) {
     showDialog(
@@ -87,7 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                   // welcome back, you've been missed!
                   Text(
-                    "Let's create an account for you!" ,
+                    "Let's create an account for you!",
                     style: TextStyle(
                       color: Colors.grey[700],
                       fontSize: 16,
@@ -125,7 +127,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                   // sign in button
                   MyButton(
-                    text:"Sign Up",
+                    text: "Sign Up",
                     onTap: signUserUp,
                   ),
 
@@ -168,15 +170,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       // google button
                       SquareTile(
                           onTap: () => AuthService().signInWithGoogle(),
-                          imagePath: 'lib/images/google.png'
-                      ),
+                          imagePath: 'lib/images/google.png'),
 
+                      // ignore: prefer_const_constructors
                       SizedBox(width: 25),
 
                       // apple button
                       SquareTile(
-                          onTap:() {},
-                          imagePath: 'lib/images/apple.png')
+                          onTap: () {}, imagePath: 'lib/images/apple.png')
                     ],
                   ),
 

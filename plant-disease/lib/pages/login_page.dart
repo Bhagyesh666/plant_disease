@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/components/my_button.dart';
@@ -6,6 +8,7 @@ import 'package:modernlogintute/components/square_tile.dart';
 import 'package:modernlogintute/services/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   LoginPage({super.key, required this.onTap});
   final Function()? onTap;
 
@@ -170,13 +173,12 @@ class _LoginPageState extends State<LoginPage> {
                         onTap: () => AuthService().signInWithGoogle(),
                       ),
 
+                      // ignore: prefer_const_constructors
                       SizedBox(width: 25),
 
                       // apple button
                       SquareTile(
-                          onTap: (){},
-                          imagePath: 'lib/images/apple.png'
-                      ),
+                          onTap: () {}, imagePath: 'lib/images/apple.png'),
                     ],
                   ),
 

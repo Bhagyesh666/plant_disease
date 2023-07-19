@@ -31,6 +31,8 @@
 //   }
 // }
 
+// ignore_for_file: depend_on_referenced_packages, library_private_types_in_public_api, deprecated_member_use
+
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -48,7 +50,7 @@ class _DashboardState extends State<Dashboard> {
   String? _apiResponse = ''; // Response from the API
 
   final user = FirebaseAuth.instance.currentUser!;
-  void signUserOut(){
+  void signUserOut() {
     FirebaseAuth.instance.signOut();
   }
 
@@ -62,9 +64,10 @@ class _DashboardState extends State<Dashboard> {
       setState(() {
         _imageBytes = bytes;
         _apiResponse =
-        null; // Reset the API response when a new image is selected
+            null; // Reset the API response when a new image is selected
       });
     } else {
+      // ignore: avoid_print
       print('No image selected.');
     }
   }
@@ -72,7 +75,8 @@ class _DashboardState extends State<Dashboard> {
   Future<void> saveImage() async {
     if (_imageBytes != null) {
       // Create a MultipartRequest
-      var request = http.MultipartRequest('POST', Uri.parse('https://tanujbordikar.pythonanywhere.com/predict'));
+      var request = http.MultipartRequest('POST',
+          Uri.parse('https://tanujbordikar.pythonanywhere.com/predict'));
 
       // Create a MultipartFile from _imageBytes
       var file = http.MultipartFile.fromBytes('image', _imageBytes as List<int>,
@@ -92,8 +96,10 @@ class _DashboardState extends State<Dashboard> {
         _apiResponse = responseBody;
       });
 
+      // ignore: avoid_print
       print('API Response: $_apiResponse'); // Print the API response
     } else {
+      // ignore: avoid_print
       print('No image selected.');
     }
   }
@@ -102,19 +108,23 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // ignore: prefer_const_constructors
         title: Text('Plant Disease Detection'),
         backgroundColor: Colors.black,
-          actions: [
+        actions: [
           IconButton(
-              onPressed: signUserOut,
-              icon: const Icon(Icons.logout),
+            onPressed: signUserOut,
+            icon: const Icon(Icons.logout),
           )
         ],
       ),
       body: Container(
+        // ignore: prefer_const_constructors
         decoration: BoxDecoration(
+          // ignore: prefer_const_constructors
           gradient: LinearGradient(
-            colors: [Colors.white60!, Colors.white24!],
+            // ignore: prefer_const_literals_to_create_immutables
+            colors: [Colors.white60, Colors.white24],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -125,7 +135,7 @@ class _DashboardState extends State<Dashboard> {
             Expanded(
               child: Padding(
                 padding:
-                const EdgeInsets.symmetric(vertical: 100, horizontal: 10),
+                    const EdgeInsets.symmetric(vertical: 100, horizontal: 10),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -135,6 +145,7 @@ class _DashboardState extends State<Dashboard> {
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 1,
                         blurRadius: 3,
+                        // ignore: prefer_const_constructors
                         offset: Offset(0, 2),
                       ),
                     ],
@@ -142,22 +153,23 @@ class _DashboardState extends State<Dashboard> {
                   child: Center(
                     child: _imageBytes == null
                         ? Text(
-                      'No image selected.',
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: Colors.grey[400],
-                      ),
-                    )
+                            'No image selected.',
+                            style: TextStyle(
+                              fontSize: 24,
+                              color: Colors.grey[400],
+                            ),
+                          )
                         : Image.memory(
-                      _imageBytes!,
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: double.infinity,
-                    ),
+                            _imageBytes!,
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: double.infinity,
+                          ),
                   ),
                 ),
               ),
             ),
+            // ignore: prefer_const_constructors
             SizedBox(height: 20),
             // Container to display API response
             Container(
@@ -169,11 +181,13 @@ class _DashboardState extends State<Dashboard> {
                 color: Colors.black,
               ),
               child: Padding(
+                // ignore: prefer_const_constructors
                 padding: EdgeInsets.all(10),
                 child: Center(
                   child: Text(
                     _apiResponse ?? 'No disease',
                     textAlign: TextAlign.center,
+                    // ignore: prefer_const_constructors
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.white,
@@ -183,16 +197,20 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
 
+            // ignore: prefer_const_constructors
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: ElevatedButton(
                 onPressed: getImage,
+                // ignore: prefer_const_constructors, sort_child_properties_last
                 child: Text('Select Image'),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.black,
                   textStyle:
-                  TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      // ignore: prefer_const_constructors
+                      TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  // ignore: prefer_const_constructors
                   padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -200,18 +218,22 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
             ),
+            // ignore: prefer_const_constructors
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: ElevatedButton(
                 onPressed: saveImage,
+                // ignore: prefer_const_constructors, sort_child_properties_last
                 child: Text('Predict'),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.black,
+                  // ignore: prefer_const_constructors
                   textStyle: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
+                  // ignore: prefer_const_constructors
                   padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -219,6 +241,7 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
             ),
+            // ignore: prefer_const_constructors
             SizedBox(height: 20),
           ],
         ),

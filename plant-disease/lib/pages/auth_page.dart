@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+// ignore: unused_import
 import 'package:modernlogintute/pages/login_page.dart';
 import 'home_page.dart';
 import 'login_or_register.dart';
@@ -12,10 +13,10 @@ class AuthPage extends StatelessWidget {
       body: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          if (snapshot.hasData){
+          if (snapshot.hasData) {
+            // ignore: prefer_const_constructors
             return Dashboard();
-          }
-          else{
+          } else {
             return const LoginOrRegisterPage();
           }
         },
